@@ -1,0 +1,8 @@
+summary : text
+project : name
+severity : text
+priority : text
+steps : steps
+ar : text
+er : text
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[D[D[D[D
