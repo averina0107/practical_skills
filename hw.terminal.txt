@@ -1,0 +1,110 @@
+Домашнее задание №1
+Тема:Git.Terminal
+Выполнила:
+студентка 26 группы
+Тютюнник В.С.
+
+1. Посмотреть где я - $ pwd
+2. Создать папку - $ mkdir test
+3. Зайти в папку - $ cd test
+4. Создать 3 папки - $ mkdir qa_1 qa_2 qa_3
+5. Зайти в любую папку - сd qa_1, проверить перешли ли в заданную папку - $ pwd
+6. Создать 5 файлов(3 -txt,2 -json) - $ touch hw_1.txt hw_2.txt hw_3.txt
+				      $ touch hw_1.json hw_2.json
+
+7.Создать 3 папки - $ mkdir hw_1 hw_2 hw_3
+8.Вывести список содержимого папки - $ ls -la
+
+total 8
+drwxr-xr-x 1 ler07 197609 0 Jan  4 20:42 ./
+drwxr-xr-x 1 ler07 197609 0 Jan  4 20:36 ../
+drwxr-xr-x 1 ler07 197609 0 Jan  4 20:42 hw_1/
+-rw-r--r-- 1 ler07 197609 0 Jan  4 20:41 hw_1.json
+-rw-r--r-- 1 ler07 197609 0 Jan  4 20:41 hw_1.txt
+drwxr-xr-x 1 ler07 197609 0 Jan  4 20:42 hw_2/
+-rw-r--r-- 1 ler07 197609 0 Jan  4 20:41 hw_2.json
+-rw-r--r-- 1 ler07 197609 0 Jan  4 20:41 hw_2.txt
+drwxr-xr-x 1 ler07 197609 0 Jan  4 20:42 hw_3/
+-rw-r--r-- 1 ler07 197609 0 Jan  4 20:41 hw_3.txt
+
+9. Открыть любой txt файл - $ vim hw_1.txt 
+10. Написать любой текст - перейти в режим редактирования <insert> используя кнопку I на латинской расскладке, внести данные
+нажать ESC, в строке ввода ввести :wq, выбор подтвердить нажав на ENTER
+11. Выйти из папки на уровень выше - $ cd .. 
+12. Переместить любые 2 файла, которые вы создали, в любую другую папку - $ mv hw_1.txt ../qa_2/hw_1.txt
+									  $ mv hw_1.json ../../3.01.22\ gitbush/hw_1.json
+13. Cкопировать любые 2 файла, которые вы создали, в любую другую папку - $ cp hw_2.json hw_1/hw_2.json
+									  $ cp hw_3.txt ../../3.01.22\ gitbush/hw_3.txt
+14.Найти файл по имени -  $ find -name "hw_1.txt"
+./3.01.22 gitbush/qa_1/hw_1.txt
+./3.01.22 gitbush/qa_2/hw_1.txt
+15.Просмотреть содержимое в реальном времени - $ tail hw_1.txt
+привет
+Привет
+привет
+16. Вывести несколько первых строк из текстового файла - $ head -2 hw_1.txt
+пРивет
+Привет
+17. Вывести несколько последних строк из текстового файла
+$ tail -n 1 hw_1.txt
+привет
+18.Просмотреть содержимое длинного файла - $ less hw_1.txt
+пРивет
+Привет
+привет
+для того, чтобы выйти из режима просмотра нажать q
+19. Вывести дату и время - $ date
+Wed Jan  5 06:57:05     2022
+
+Задание *
+1) Отправить http запрос на сервер.
+http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000
+
+$ curl "http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   185  100   185    0     0   1867      0 --:--:-- --:--:-- --:--:--  1887{"age":"32","family":{"children":[["Alex",24],["Kate",12]],"pets":{"cat":{"age":3,"name":"Sunny"},"dog":{"age":4,"name":"Luky"}},"u_salary_1_5_year":4000},"name":"Vadim","salary":1000}
+
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+Создание скрипта
+1. Создаем файл - $ touch script
+2. Редактируем файл <script> - $ vim script
+ - Переходим в режим редактирования нажав кнопку <I>,
+ - Задаем оболочку, которую будем использовать "bash"
+ - Пишем скрипт:
+#!/usr/bin/bash
+cd auto_Terminal
+mkdir qa_1 qa_2 qa_3
+cd qa_1
+pwd
+touch hw_1.txt hw_2.txt hw_3.txt qa_1.json qa_2.json
+mkdir qa1 qa2 qa3
+ls -la
+cd auto_Terminal
+mv hw_2.txt ../qa_2/hw_2.txt
+mv qa_1.json ../../auto_Terminal
+
+Выполнение скрипта
+$ ./script
+mkdir: cannot create directory ‘qa_1’: File exists
+mkdir: cannot create directory ‘qa_2’: File exists
+mkdir: cannot create directory ‘qa_3’: File exists
+/c/Users/user/Desktop/auto_Terminal/qa_1
+mkdir: cannot create directory ‘qa1’: File exists
+mkdir: cannot create directory ‘qa2’: File exists
+mkdir: cannot create directory ‘qa3’: File exists
+total 8
+drwxr-xr-x 1 user 197121 0 Jan  5 11:09 .
+drwxr-xr-x 1 user 197121 0 Jan  5 11:08 ..
+-rw-r--r-- 1 user 197121 0 Jan  5 11:09 hw_1.txt
+-rw-r--r-- 1 user 197121 0 Jan  5 11:09 hw_2.txt
+-rw-r--r-- 1 user 197121 0 Jan  5 11:09 hw_3.txt
+drwxr-xr-x 1 user 197121 0 Jan  5 10:47 qa1
+drwxr-xr-x 1 user 197121 0 Jan  5 10:47 qa2
+drwxr-xr-x 1 user 197121 0 Jan  5 10:47 qa3
+-rw-r--r-- 1 user 197121 0 Jan  5 11:09 qa_1.json
+-rw-r--r-- 1 user 197121 0 Jan  5 11:09 qa_2.json
+./script: line 9: cd: auto_Terminal: No such file or directory (перемещается файл, который мы задали в скрипте уже после выполнения его, 
+поэтому и получается ошибка, по факту все выполнено и файл qa_1.json расположен в папке auto_Terminal)
+
+
