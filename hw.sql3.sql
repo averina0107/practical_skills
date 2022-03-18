@@ -3,6 +3,7 @@
 Выполнила:
 студентка 26 группы
 Тютюнник В.С.
+
 -- 1. Вывести всех работников чьи зарплаты есть в базе, вместе с зарплатами.
 select employees.employee_name, salary.monthly_salary
 from 
@@ -10,6 +11,7 @@ employees inner join employee_salary
 	on employees.id=employee_salary.employee_id
 inner join salary 
 	on salary.id=employee_salary.salary_id;
+
 --2. Вывести всех работников у которых ЗП меньше 2000.
 select employee_name, monthly_salary 
 from employees 
@@ -19,6 +21,7 @@ join salary
 	on salary.id=employee_salary.salary_id 
 where monthly_salary < 2000
 order by monthly_salary asc;
+
 -- 3. Вывести все зарплатные позиции, но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
 select employee_name, monthly_salary
 from salary 
@@ -27,6 +30,7 @@ left join employee_salary
 left join employees
 	on employees.id=employee_salary.employee_id 
 where employee_name is null;
+
 -- 4. Вывести все зарплатные позиции  меньше 2000 но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
 select monthly_salary, employee_name
 from salary 
@@ -36,6 +40,7 @@ left join employees
 	on employees.id=employee_salary.employee_id
 where employee_name is null and monthly_salary<2000
 order by monthly_salary asc;
+
 -- 5. Найти всех работников кому не начислена ЗП.
 select employee_name, monthly_salary 
 from salary 
@@ -44,6 +49,7 @@ left join employee_salary
 right join employees
 	on employee_salary.employee_id=employees.id
 where monthly_salary is null;
+
 -- 6. Вывести всех работников с названиями их должности.
 select employee_name, role_name 
 from roles 
@@ -52,6 +58,7 @@ inner join roles_employee
 inner join employees
 	on employees.id=roles_employee.employee_id
 order by role_name asc;
+
 -- 7. Вывести имена и должность только Java разработчиков.
 select employee_name, role_name 
 from roles
@@ -61,6 +68,7 @@ left join employees
 	on employees.id=roles_employee.employee_id
 where role_name like '%Java_developer%'
 order by role_name asc;
+
 -- 8. Вывести имена и должность только Python разработчиков.
 select employee_name, role_name 
 from roles
@@ -70,6 +78,7 @@ left join employees
 	on employees.id=roles_employee.employee_id
 where role_name like '%Python_developer%'
 order by role_name asc;
+
 -- 9. Вывести имена и должность всех QA инженеров.
 select employee_name, role_name 
 from roles right join roles_employee
@@ -96,6 +105,7 @@ left join employees
 	on employees.id=roles_employee.employee_id
 where role_name like '%Automation_QA%'
 order by role_name asc;
+
 -- 12. Вывести имена и зарплаты Junior специалистов
 select employee_name, monthly_salary, role_name 
 from roles_employee 
@@ -109,6 +119,7 @@ join salary
 	on salary.id=employee_salary.salary_id
 where role_name like '%Junior%'
 order by salary asc;
+
 -- 13. Вывести имена и зарплаты Middle специалистов
 select employee_name, monthly_salary, role_name 
 from roles_employee 
@@ -122,6 +133,7 @@ join salary
 	on salary.id=employee_salary.salary_id 
 where role_name like '%Middle%'
 order by salary asc;
+
 -- 14. Вывести имена и зарплаты Senior специалистов
 select employee_name, monthly_salary, role_name 
 from roles_employee 
@@ -135,6 +147,7 @@ join salary
 	on salary.id=employee_salary.salary_id 
 where role_name like '%Senior%'
 order by salary asc;
+
 -- 15. Вывести зарплаты Java разработчиков
 select monthly_salary, role_name 
 from roles_employee 
@@ -148,6 +161,7 @@ join salary
 	on salary.id=employee_salary.salary_id 
 where role_name like '%Java_developer%'
 order by salary asc;
+
 -- 16. Вывести зарплаты Python разработчиков
 select monthly_salary, role_name 
 from employee_salary es 
@@ -159,6 +173,7 @@ join roles r
 	on r.id=re.role_id 
 where role_name like '%Python%'
 order by monthly_salary asc;
+
 -- 17. Вывести имена и зарплаты Junior Python разработчиков
 select employee_name, monthly_salary, role_name 
 from roles_employee 
@@ -185,6 +200,7 @@ join employees e
 	on e.id=re.employee_id 
 where role_name like '%Junior_Python_developer%'
 order by monthly_salary asc;
+
 -- 18. Вывести имена и зарплаты Middle JS разработчиков
 select employee_name , monthly_salary, role_name 
 from employee_salary es 
@@ -211,6 +227,7 @@ join salary
 	on salary.id=employee_salary.salary_id 
 where role_name like '%Middle_JavaScript_developer%'
 order by salary asc;
+
 -- 19. Вывести имена и зарплаты Senior Java разработчиков
 select employee_name , monthly_salary, role_name 
 from employee_salary es 
@@ -250,7 +267,6 @@ join roles
 where role_name like '%Junior%QA%'
 order by monthly_salary asc;
 
-
 -- 21. Вывести среднюю зарплату всех Junior специалистов
 --зп с разбивкой по категориям
 select role_name, avg(monthly_salary) as avg_salary_junior 
@@ -276,6 +292,7 @@ join roles r
 join salary s 
 	on s.id=es.salary_id 
 where role_name like '%Junior%';
+
 -- 22. Вывести сумму зарплат JS разработчиков
 --вывод суммы по JS разработчикам по каждой ступени
 select role_name, sum(monthly_salary)
@@ -301,6 +318,7 @@ join roles r
 join salary s 
 	on s.id=es.salary_id 
 where role_name like '%JavaScript%';
+
 -- 23. Вывести минимальную ЗП QA инженеров
 select min(monthly_salary), role_name 
 from roles_employee re 
@@ -324,6 +342,7 @@ join roles r
 join salary s 
 	on s.id=es.salary_id 
 where role_name like '%QA%';
+
 -- 24. Вывести максимальную ЗП QA инженеров
 select max(monthly_salary), role_name 
 from roles_employee re 
@@ -365,6 +384,7 @@ join employees
 where role_name like '%QA%'
 group by role_name
 order by count_qa asc;
+
 -- 26. Вывести количество Middle специалистов.
 select count(role_name) as count_middle
 from roles
@@ -383,6 +403,7 @@ join employees
 where role_name like 'Middle%'
 group by role_name
 order by count_qa asc;
+
 -- 27. Вывести количество разработчиков
 select count(role_name) as count_dev
 from roles
@@ -424,6 +445,7 @@ join employees e
 	on e.id=re.employee_id  
 where role_name like '%developer%'
 group by r.role_name;
+
 -- 29. Вывести имена, должности и ЗП всех специалистов по возрастанию
 select employee_name, role_name, monthly_salary 
 from roles_employee
@@ -463,6 +485,7 @@ join salary
 	on salary.id=employee_salary.salary_id
 where monthly_salary between 1700 and 2300
 order by monthly_salary asc;
+
 -- 31. Вывести имена, должности и ЗП всех специалистов по возрастанию у специалистов у которых ЗП меньше 2300
 select employee_name, role_name, monthly_salary 
 from roles_employee
